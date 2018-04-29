@@ -746,7 +746,7 @@ MPCall_58_0x44
 
 MPCall_58_0x68
 	li		r17,  0x3800
-	rlwinm.	r8, r29,  0, Task.kFlagPageFaulted, Task.kFlagPageFaulted
+	rlwinm.	r8, r29,  0, 18, 18;Task.kFlagPageFaulted, but empw complains when I call it that
 	andc	r29, r29, r17	;clear Task.kFlagPageFaulted, Task.kFlag19, and Task.kFlag20
 	li		r17,  0x00
 	bne		cr7, MPCall_58_0x80
@@ -758,7 +758,7 @@ MPCall_58_0x80
 
 MPCall_58_0x88
 	lwz		r18,  ContextBlock.MSR(r30)
-	rlwimi	r18, r17,  0, MSR_SE, MSR_BE
+	rlwimi	r18, r17,  0, MSR_SEbit, MSR_BEbit
 	stw		r18,  0x00a4(r30)
 	li		r19,  0x600
 	lwz		r17,  0x0008(r31)
